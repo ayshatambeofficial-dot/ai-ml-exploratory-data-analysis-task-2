@@ -1,0 +1,143 @@
+============================================================ 
+1. SUMMARY STATISTICS
+ ============================================================
+Shape: (891, 12)
+
+Missing values:
+ PassengerId      0
+Survived         0
+Pclass           0
+Name             0
+Sex              0
+Age            177
+SibSp            0
+Parch            0
+Ticket           0
+Fare             0
+Cabin          687
+Embarked         2
+dtype: int64
+
+Numeric summary:
+        count   mean    std   min    25%    50%   75%     max  median  skew  kurtosis
+Age    714.0  29.70  14.53  0.42  20.12  28.00  38.0   80.00   28.00  0.39      0.18
+Fare   891.0  32.20  49.69  0.00   7.91  14.45  31.0  512.33   14.45  4.79     33.40
+SibSp  891.0   0.52   1.10  0.00   0.00   0.00   1.0    8.00    0.00  3.70     17.88
+Parch  891.0   0.38   0.81  0.00   0.00   0.00   0.0    6.00    0.00  2.75      9.78
+
+Categorical summary:
+          Sex Embarked      Pclass    Survived
+count    891      889  891.000000  891.000000
+unique     2        3         NaN         NaN
+top     male        S         NaN         NaN
+freq     577      644         NaN         NaN
+mean     NaN      NaN    2.308642    0.383838
+std      NaN      NaN    0.836071    0.486592
+min      NaN      NaN    1.000000    0.000000
+25%      NaN      NaN    2.000000    0.000000
+50%      NaN      NaN    3.000000    0.000000
+75%      NaN      NaN    3.000000    1.000000
+max      NaN      NaN    3.000000    1.000000
+
+Overall survival rate: 38.4%
+
+Survival rate by Sex:
+         survival_rate  count
+Sex                         
+female          0.742    314
+male            0.189    577
+
+Survival rate by Pclass:
+         survival_rate  count
+Pclass                      
+1               0.630    216
+2               0.473    184
+3               0.242    491
+
+Survival rate by Embarked:
+           survival_rate  count
+Embarked                      
+C                 0.554    168
+Q                 0.390     77
+S                 0.337    644
+
+ ============================================================ 
+2. HISTOGRAMS & BOXPLOTS
+ ============================================================
+IQR outlier counts:
+  Age: 11
+  Fare: 116
+  SibSp: 46
+  Parch: 213
+
+ ============================================================ 
+3. PAIRPLOT & CORRELATION
+ ============================================================
+          Survived  Pclass  Sex_code   Age  SibSp  Parch  Fare
+Survived      1.00   -0.34      0.54 -0.08  -0.04   0.08  0.26
+Pclass       -0.34    1.00     -0.13 -0.37   0.08   0.02 -0.55
+Sex_code      0.54   -0.13      1.00 -0.09   0.11   0.25  0.18
+Age          -0.08   -0.37     -0.09  1.00  -0.31  -0.19  0.10
+SibSp        -0.04    0.08      0.11 -0.31   1.00   0.41  0.16
+Parch         0.08    0.02      0.25 -0.19   0.41   1.00  0.22
+Fare          0.26   -0.55      0.18  0.10   0.16   0.22  1.00
+
+Correlation with Survived:
+ Sex_code    0.543
+Pclass     -0.338
+Fare        0.257
+Parch       0.082
+Age        -0.077
+SibSp      -0.035
+Name: Survived, dtype: float64
+
+ ============================================================ 
+4. PATTERNS, TRENDS, ANOMALIES
+ ============================================================
+Survival rate Class x Sex:
+ Sex     female   male
+Pclass               
+1        0.968  0.369
+2        0.921  0.157
+3        0.500  0.135
+
+Survival by age group:
+              mean  count
+AgeGroup                
+Child       0.580     69
+Teen        0.429     70
+YoungAdult  0.383    358
+Adult       0.400    195
+Senior      0.227     22
+
+Survival by family size:
+              mean  count
+FamilySize              
+1           0.304    537
+2           0.553    161
+3           0.578    102
+4           0.724     29
+5           0.200     15
+6           0.136     22
+7           0.333     12
+8           0.000      6
+11          0.000      7
+
+Anomalies:
+  Fare == 0 rows: 15
+  Max fare: 512.3292 | rows with Fare > 500: 3
+  Age missing: 19.9% | Cabin missing: 77.1%
+  Infants (Age<1): 7 | Oldest: 80.0
+  Median age of missing-Age group by Pclass:
+ Pclass
+1    37.0
+2    29.0
+3    24.0
+Name: Age, dtype: float64
+  Survival: Age missing vs present:
+ Age
+False    0.406
+True     0.294
+Name: Survived, dtype: float64
+
+Saved interactive Plotly charts to interactive/
